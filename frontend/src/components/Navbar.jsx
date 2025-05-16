@@ -77,34 +77,61 @@ const Navbar = () => {
 
       {menuOpen && (
         <div className="md:hidden mt-4 flex flex-col items-start space-y-4 text-xl">
-          <ul className="hidden md:flex space-x-10 text-xl">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            {user && (
-              <>
-                {user.role === "user" && (
-                  <li>
-                    <Link to={`/viewresults/${user._id}`}>View Result</Link>
-                  </li>
-                )}
+          <Link
+            to="/"
+            onClick={() => setMenuOpen(false)}
+            className="hover:text-[#ac1a3a]"
+          >
+            Home
+          </Link>
 
-                {user.role === "admin" && (
-                  <>
-                    <li>
-                      <Link to="/allresults">Results</Link>
-                    </li>
-                    <li>
-                      <Link to="/allposts">Posts</Link>
-                    </li>
-                    <li>
-                      <Link to="/allusers">Users</Link>
-                    </li>
-                  </>
-                )}
-              </>
-            )}
-          </ul>
+          {user && (
+            <>
+              <Link
+                to={`/viewresults/${user._id}`}
+                onClick={() => setMenuOpen(false)}
+                className="hover:text-[#ac1a3a]"
+              >
+                Results
+              </Link>
+
+              {user.role === "admin" && (
+                <>
+                  <Link
+                    to="/allresults"
+                    onClick={() => setMenuOpen(false)}
+                    className="hover:text-[#ac1a3a]"
+                  >
+                    results
+                  </Link>
+                  <Link
+                    to="/allposts"
+                    onClick={() => setMenuOpen(false)}
+                    className="hover:text-[#ac1a3a]"
+                  >
+                    Posts
+                  </Link>
+                  <Link
+                    to="/allusers"
+                    onClick={() => setMenuOpen(false)}
+                    className="hover:text-[#ac1a3a]"
+                  >
+                    Users
+                  </Link>
+                </>
+              )}
+
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setMenuOpen(false);
+                }}
+                className="bg-[#ac1a3a] cursor-pointer text-white py-2 px-5 rounded-md hover:bg-[#ac1a3a]"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
       )}
     </header>

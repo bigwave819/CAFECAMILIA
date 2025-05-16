@@ -1,4 +1,5 @@
 import Post from "../models/postModel.js";
+import Result from "../models/resultModel.js";
 
 
 export const createPost = async (req, res) => {
@@ -98,5 +99,31 @@ export const getSinglePost = async (req, res) => {
       message: "Server Error: ",
       error: error.message
     });
+  }
+};
+
+export const deletePost = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId);
+    if (!post) return res.status(404).json({ error: "Post not found" });
+    await Result.deleteMany({ post: postId });
+    await Post.findByIdAndDelete(postId);
+
+    res.status(200).json({ message: "Post and related data deleted successfully" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error while deleting Post" });
+  }
+};
+
+export const countPosts = async (req, res) => {
+  try {
+    const totalPost = await Post.countDocuments();
+    res.status(200).json({ totalPost });
+  } catch (error) {
+    res.status(500).json({ error: "Error counting Posts" });
   }
 };
