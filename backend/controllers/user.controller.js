@@ -23,7 +23,6 @@ export const createUser = async (req, res) => {
             username,
             email,
             password: hash,
-            role
         });
 
         await newUser.save();

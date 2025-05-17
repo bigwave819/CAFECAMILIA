@@ -9,49 +9,68 @@ import ViewAllResults from "./pages/admin/ViewAllResult";
 import ViewAllPosts from "./pages/admin/ViewAllPost";
 import ViewAllUsers from "./pages/admin/ViewAllUsers";
 import Navbar from "./components/Navbar"
+import CreateResult from "./pages/admin/CreateResult"
+import CreatePost from "./pages/admin/CreatePost"
+import CreateUser from "./pages/admin/CreateUser"
 
 function App() {
-
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login/> } />
-        <Route path="/signup" element={<Signup/> } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-
-        {/** Private Routes For the user */ }
+        {/* Private Routes For the user */}
         <Route path="/" element={
           <PrivateRoute>
             <Navbar />
-            <Home/> 
+            <Home />
           </PrivateRoute>
-          } />
-          <Route path="/viewresults/:id" element={
+        } />
+        <Route path="/viewresults/:id" element={
           <PrivateRoute>
             <Navbar />
-            <ViewResults/> 
+            <ViewResults />
           </PrivateRoute>
-          } />
+        } />
 
-          {/* Admin Routes */}
-          <Route path="/allusers" element={
-          <AdminRoute>
-            <Navbar/>
-            <ViewAllUsers/> 
-          </AdminRoute>
-          } />
-          <Route path="/allposts" element={
-          <AdminRoute>
-            <Navbar/>
-            <ViewAllPosts/> 
-          </AdminRoute>
-          } />
-          <Route path="/allresults" element={
+        {/* Admin Routes */}
+        <Route path="/allusers" element={
           <AdminRoute>
             <Navbar />
-            <ViewAllResults/> 
+            <ViewAllUsers />
           </AdminRoute>
-          } />
+        } />
+        <Route path="/allposts" element={
+          <AdminRoute>
+            <Navbar />
+            <ViewAllPosts />
+          </AdminRoute>
+        } />
+        <Route path="/allresults" element={
+          <AdminRoute>
+            <Navbar />
+            <ViewAllResults />
+          </AdminRoute>
+        } />
+        <Route path="/createResult" element={
+          <AdminRoute>
+            <Navbar />
+            <CreateResult />
+          </AdminRoute>
+        } />
+        <Route path="/createPost" element={
+          <AdminRoute>
+            <Navbar />
+            <CreatePost />
+          </AdminRoute>
+        } />
+        <Route path="/createUser" element={
+          <AdminRoute>
+            <Navbar />
+            <CreateUser />
+          </AdminRoute>
+        } />
       </Routes>
     </Router>
   )

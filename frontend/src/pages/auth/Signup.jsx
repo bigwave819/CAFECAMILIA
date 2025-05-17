@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import useLogin from '../../hooks/useLogin';
 import { useNavigate, Link } from "react-router-dom"
+import useSignUp from '../../hooks/useSignup';
 
 const Login = () => {
     const [ username, setUsername ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const { login, error, loading } = useLogin();
+    const { signup, error, loading } = useSignUp();
 
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(email, password);
+        signup(username, email, password);
+        setUsername("")
         setEmail("");
         setPassword("")
         navigate("/");

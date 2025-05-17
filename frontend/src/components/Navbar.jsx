@@ -32,7 +32,7 @@ const Navbar = () => {
               <>
                 {user.role === "user" && (
                   <li>
-                    <Link to={`/viewresults/${user._id}`}>View Result</Link>
+                    <Link to={`/viewresults/${user.id}`}>View Result</Link>
                   </li>
                 )}
 

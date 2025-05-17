@@ -3,7 +3,7 @@ import {
     createResult,
     updateResult,
     getAllResults,
-    getSingleResult,
+    getResultsByUser,
     deleteResult,
     countResults
 } from "../controllers/result.controller.js";
@@ -15,7 +15,7 @@ const router = express.Router();
 router.post("/create", requireAuth ,createResult);
 router.put("/update/:id", requireAuth ,updateResult);
 router.get("/view", requireAuth ,getAllResults);
-router.get("/view/:id", requireAuth ,getSingleResult);
+router.get("/view/user/:userId", requireAuth, getResultsByUser);
 router.delete('/delete/:id', requireAuth ,deleteResult);
 router.get("/count", requireAuth,countResults);
 
